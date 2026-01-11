@@ -1,12 +1,133 @@
+// ...existing code...
 <!DOCTYPE html>
-<html lang = "vi">
+<html lang="vi">
     <head>
-        <meta charset="UTF-8">
-        <title>PremixTracK</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>PremixTrack</title>
+        <style>
+            :root{
+                --bg:#f6f8fa; --card:#ffffff; --accent:#2563eb; --muted:#6b7280;
+                --max-width:1000px;
+            }
+            *{box-sizing:border-box}
+            body{
+                margin:0;
+                font-family:Inter, system-ui, Arial, sans-serif;
+                background:var(--bg);
+                color:#111827;
+                -webkit-font-smoothing:antialiased;
+            }
+            .site{
+                max-width:var(--max-width);
+                margin:24px auto;
+                padding:20px;
+            }
+            header{
+                display:flex;
+                align-items:center;
+                justify-content:space-between;
+                gap:16px;
+                margin-bottom:18px;
+            }
+            .brand{display:flex;align-items:center;gap:12px}
+            .logo{
+                width:48px;height:48px;border-radius:8px;
+                background:linear-gradient(135deg,var(--accent),#7c3aed);
+                display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;
+                font-size:18px;
+            }
+            nav a{
+                margin-left:12px;color:var(--muted);text-decoration:none;font-weight:600;
+            }
+            nav a:hover{color:var(--accent)}
+            .hero{
+                background:linear-gradient(180deg, rgba(37,99,235,0.08), transparent);
+                padding:22px;border-radius:12px;margin-bottom:18px;
+                display:flex;flex-direction:column;gap:12px;
+            }
+            .hero h1{margin:0;font-size:1.6rem}
+            .hero p{margin:0;color:var(--muted)}
+            .grid{
+                display:grid;
+                grid-template-columns:repeat(3,1fr);
+                gap:14px;
+                margin-bottom:18px;
+            }
+            .card{
+                background:var(--card);padding:14px;border-radius:10px;box-shadow:0 1px 2px rgba(0,0,0,0.04);
+            }
+            footer{
+                color:var(--muted);font-size:0.9rem;text-align:center;padding:16px 8px;
+            }
+            form input, form textarea{
+                width:100%;padding:10px;border-radius:8px;border:1px solid #e5e7eb;margin-top:8px;
+            }
+            .row{display:flex;gap:12px}
+            @media (max-width:800px){
+                .grid{grid-template-columns:repeat(2,1fr)}
+            }
+            @media (max-width:520px){
+                header{flex-direction:column;align-items:flex-start}
+                .grid{grid-template-columns:1fr}
+            }
+        </style>
     </head>
     <body>
-        <h1>PremiiiixTrackk</h1>
-        <h2>Trang HTML đầu tiên</h2>
-        <h3>commit 8</h3>
+        <div class="site">
+            <header>
+                <div class="brand">
+                    <div class="logo">PT</div>
+                    <div>
+                        <div style="font-weight:700">PremixTrack</div>
+                        <div style="font-size:0.85rem;color:var(--muted)">Quản lý & theo dõi premix</div>
+                    </div>
+                </div>
+                <nav>
+                    <a href="#">Trang chủ</a>
+                    <a href="#">Tính năng</a>
+                    <a href="#">Liên hệ</a>
+                </nav>
+            </header>
+
+            <section class="hero" aria-labelledby="hero-title">
+                <h1 id="hero-title">Trang HTML đầu tiên — PremixTrack</h1>
+                <p>Trang mẫu cơ bản, responsive và dễ sửa đổi. Bắt đầu từ đây để phát triển giao diện và chức năng.</p>
+            </section>
+
+            <section class="grid" aria-label="tính năng">
+                <div class="card">
+                    <h3 style="margin:0 0 8px 0">Theo dõi</h3>
+                    <p style="margin:0;color:var(--muted)">Ghi lại lịch sử, trạng thái và dữ liệu premix.</p>
+                </div>
+                <div class="card">
+                    <h3 style="margin:0 0 8px 0">Báo cáo</h3>
+                    <p style="margin:0;color:var(--muted)">Xuất báo cáo nhanh, lọc theo thời gian và trạng thái.</p>
+                </div>
+                <div class="card">
+                    <h3 style="margin:0 0 8px 0">Cấu hình</h3>
+                    <p style="margin:0;color:var(--muted)">Thiết lập tham số, quyền truy cập và thông báo.</p>
+                </div>
+            </section>
+
+            <section class="card" aria-label="liên hệ">
+                <h3 style="margin:0 0 12px 0">Liên hệ / Ghi chú</h3>
+                <form>
+                    <div class="row">
+                        <input type="text" placeholder="Tên" />
+                        <input type="email" placeholder="Email" />
+                    </div>
+                    <textarea rows="4" placeholder="Nội dung..."></textarea>
+                    <div style="margin-top:12px">
+                        <button type="submit" style="background:var(--accent);color:#fff;border:none;padding:10px 14px;border-radius:8px;cursor:pointer">Gửi</button>
+                    </div>
+                </form>
+            </section>
+
+            <footer>
+                © PremixTrack — Thiết kế cơ bản • commit 8
+            </footer>
+        </div>
     </body>
 </html>
+// ...existing code...
