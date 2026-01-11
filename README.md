@@ -5,3 +5,5 @@ Tracking Premix Quantity and Order Schedule
 10/1/2025 EDIT 1156_100126 vISUAL STUDIO CODE
 
 TEST CHỈNH SỬA VS CODE + PORTABLE GIT 
+
+11/1 update index + about
