@@ -1,0 +1,140 @@
+// PremixTrack - Database Schema
+// Chạy: npx prisma migrate dev (lần đầu) hoặc npx prisma db push
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  username     String   @unique
+  email        String   @unique
+  passwordHash String   @map("password_hash")
+  fullName     String   @map("full_name")
+  role         String   // admin | planner | operator | qc | warehouse
+  isActive     Boolean  @default(true) @map("is_active")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  schedulesCreated  PremixSchedule[] @relation("CreatedBy")
+  schedulesApproved PremixSchedule[] @relation("ApprovedBy")
+  reports           Report[]
+  notifications     Notification[]
+  auditLogs         AuditLog[]
+
+  @@map("users")
+}
+
+model PremixSchedule {
+  id           Int       @id @default(autoincrement())
+  scheduleCode String    @unique @map("schedule_code")
+  plannedDate  String    @map("planned_date") // YYYY-MM-DD
+  plannedTime  String    @map("planned_time") // HH:mm
+  quantity     Float
+  unit         String    @default("kg")
+  status       String    @default("pending") // pending | approved | in_progress | completed | cancelled
+  priority     String    @default("medium")  // low | medium | high
+  notes        String?
+  createdById  Int       @map("created_by")
+  approvedById Int?      @map("approved_by")
+  approvedAt   DateTime? @map("approved_at")
+  completedAt  DateTime? @map("completed_at")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  createdBy  User         @relation("CreatedBy", fields: [createdById], references: [id])
+  approvedBy User?        @relation("ApprovedBy", fields: [approvedById], references: [id])
+  items      PremixItem[]
+
+  @@index([plannedDate])
+  @@index([status])
+  @@map("premix_schedules")
+}
+
+model PremixItem {
+  id               Int     @id @default(autoincrement())
+  scheduleId       Int     @map("schedule_id")
+  ingredientName   String  @map("ingredient_name")
+  quantityRequired Float   @map("quantity_required")
+  unit             String
+  percentage       Float?
+  supplier         String?
+  batchNumber      String? @map("batch_number")
+  notes            String?
+  createdAt        DateTime @default(now()) @map("created_at")
+
+  schedule PremixSchedule @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
+
+  @@index([scheduleId])
+  @@map("premix_items")
+}
+
+model Inventory {
+  id             Int      @id @default(autoincrement())
+  ingredientName String   @unique @map("ingredient_name")
+  currentQuantity Float   @default(0) @map("current_quantity")
+  unit           String
+  minThreshold   Float    @default(0) @map("min_threshold")
+  maxCapacity    Float?   @map("max_capacity")
+  location       String?
+  supplier       String?
+  category       String?
+  lastUpdated    DateTime @default(now()) @updatedAt @map("last_updated")
+  updatedById    Int?     @map("updated_by")
+
+  @@map("inventory")
+}
+
+model Report {
+  id          Int      @id @default(autoincrement())
+  reportType  String   @map("report_type") // daily | weekly | monthly | custom
+  title       String
+  dateFrom    String?  @map("date_from")
+  dateTo      String?  @map("date_to")
+  filePath    String?  @map("file_path")
+  generatedById Int   @map("generated_by")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  generatedBy User @relation(fields: [generatedById], references: [id])
+
+  @@map("reports")
+}
+
+model Notification {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @map("user_id")
+  title     String
+  message   String
+  type      String   @default("info") // info | warning | error | success
+  relatedType String? @map("related_type")
+  relatedId Int?     @map("related_id")
+  isRead    Boolean  @default(false) @map("is_read")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("notifications")
+}
+
+model AuditLog {
+  id        Int      @id @default(autoincrement())
+  userId    Int?     @map("user_id")
+  action    String   // create | update | delete | approve | cancel
+  tableName String   @map("table_name")
+  recordId  Int      @map("record_id")
+  oldValues String?  @map("old_values") // JSON
+  newValues String?  @map("new_values") // JSON
+  ipAddress String?  @map("ip_address")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User? @relation(fields: [userId], references: [id])
+
+  @@index([tableName, recordId])
+  @@map("audit_logs")
+}

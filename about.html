@@ -1,76 +1,137 @@
 <!DOCTYPE html>
 <html lang="vi">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Giới thiệu — PremixTrack</title>
-    <style>
-      :root { --bg:#f6f8fa; --card:#fff; --accent:#2563eb; --muted:#6b7280; --max-width:900px; }
-      *{box-sizing:border-box}
-      body{margin:0;font-family:Inter, system-ui, Arial, sans-serif;background:var(--bg);color:#111827}
-      .site{max-width:var(--max-width);margin:28px auto;padding:20px}
-      header{display:flex;align-items:center;justify-content:space-between}
-      .logo{width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
-      nav a{margin-left:12px;color:var(--muted);text-decoration:none}
-      nav a:hover{color:var(--accent)}
-      .card{background:var(--card);padding:18px;border-radius:10px;box-shadow:0 1px 2px rgba(0,0,0,0.04);margin-top:16px}
-      h1{margin:0 0 8px 0}
-      ul{margin:8px 0 0 20px;color:var(--muted)}
-      footer{color:var(--muted);text-align:center;margin-top:18px;padding:12px 0}
-    </style>
-  </head>
-  <body>
-    <div class="site">
-      <header>
-        <div style="display:flex;align-items:center;gap:12px">
-          <div class="logo">PT</div>
-          <div>
-            <div style="font-weight:700">PremixTrack</div>
-            <div style="font-size:0.85rem;color:var(--muted)">Giới thiệu</div>
-          </div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Giới thiệu — PremixTrack</title>
+  <style>
+    :root {
+      --bg:#f6f8fa; --card:#fff; --accent:#2563eb; --muted:#6b7280; --max-width:900px;
+    }
+    * { box-sizing: border-box }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, Arial, sans-serif;
+      background: var(--bg);
+      color: #111827;
+    }
+    .site {
+      max-width: var(--max-width);
+      margin: 28px auto;
+      padding: 20px;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 14px;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .logo {
+      width: 44px; height: 44px; border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent), #7c3aed);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 700; font-size: 1.15rem;
+    }
+    nav a {
+      margin-left: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.15s;
+    }
+    nav a:hover, nav a.active {
+      color: var(--accent);
+    }
+    .card {
+      background: var(--card);
+      padding: 18px 18px 16px 18px;
+      border-radius: 10px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+      margin-top: 16px;
+    }
+    h1 { margin: 0 0 8px 0; font-size: 1.4rem }
+    h3 { margin: 18px 0 4px 0; font-size: 1.08rem }
+    ul {
+      margin: 8px 0 0 24px;
+      color: var(--muted);
+      padding-left: 0;
+    }
+    li { line-height: 1.7 }
+    p {
+      color: var(--muted);
+      margin-top: 10px;
+      margin-bottom: 0;
+    }
+    footer {
+      color: var(--muted);
+      text-align: center;
+      margin-top: 22px;
+      padding: 12px 0 0 0;
+      font-size: 0.97rem;
+    }
+    @media (max-width: 600px) {
+      .site { padding: 8px }
+      header { flex-direction: column; align-items: flex-start; gap: 8px;}
+      .card { padding: 12px }
+    }
+  </style>
+</head>
+<body>
+  <div class="site">
+    <header>
+      <div class="brand">
+        <div class="logo">PT</div>
+        <div>
+          <div style="font-weight:700">PremixTrack</div>
+          <div style="font-size:0.85rem;color:var(--muted)">Giới thiệu</div>
         </div>
-        <nav>
-          <a href="index.html">Trang chủ</a>
-          <a href="about.html">Giới thiệu</a>
-        </nav>
-      </header>
+      </div>
+      <nav>
+        <a href="index.html">Trang chủ</a>
+        <a href="about.html" class="active">Giới thiệu</a>
+      </nav>
+    </header>
 
-      <section class="card" aria-labelledby="about-title">
-        <h1 id="about-title">Tầm quan trọng của đặt lịch premix</h1>
-        <p style="color:var(--muted);margin-top:8px">
-          Đặt lịch premix đảm bảo nguyên liệu và công suất được sắp xếp đúng thời điểm, giảm thời gian chờ, hạn chế sai sót trong tỉ lệ pha trộn và duy trì chất lượng sản phẩm.
-        </p>
+    <section class="card" aria-labelledby="about-title">
+      <h1 id="about-title">Tầm quan trọng của đặt lịch premix</h1>
+      <p>
+        Đặt lịch premix giúp đảm bảo nguyên liệu và công suất được sắp xếp đúng thời điểm, giảm thời gian chờ, hạn chế sai sót trong tỉ lệ pha trộn và duy trì chất lượng sản phẩm.
+      </p>
 
-        <h3 style="margin-top:16px">Stakeholders liên quan</h3>
-        <ul>
-          <li>Nhân viên lập kế hoạch sản xuất (Production planners)</li>
-          <li>Nhân công vận hành (Operators)</li>
-          <li>Kiểm soát chất lượng (QC)</li>
-          <li>Kho và logistics</li>
-          <li>Bảo trì thiết bị</li>
-          <li>Quản lý & nhà cung cấp</li>
-        </ul>
+      <h3>Stakeholders liên quan</h3>
+      <ul>
+        <li>Nhân viên lập kế hoạch sản xuất (Production planners)</li>
+        <li>Nhân công vận hành (Operators)</li>
+        <li>Kiểm soát chất lượng (QC)</li>
+        <li>Kho và logistics</li>
+        <li>Bảo trì thiết bị</li>
+        <li>Quản lý &amp; nhà cung cấp</li>
+      </ul>
 
-        <h3 style="margin-top:16px">Vì sao cần thay thế Excel rời rạc</h3>
-        <p style="color:var(--muted);margin-top:8px">
-          Excel rời rạc thường dẫn đến dữ liệu phân mảnh, phiên bản lỗi thời, khó audit và thiếu thông tin thời gian thực. Ứng dụng web tập trung giải quyết các vấn đề này.
-        </p>
+      <h3>Vì sao cần thay thế Excel rời rạc</h3>
+      <p>
+        Excel rời rạc dễ dẫn đến dữ liệu phân mảnh, phiên bản lỗi thời, khó audit và thiếu thông tin thời gian thực. Ứng dụng web tập trung giải quyết các vấn đề này.
+      </p>
 
-        <h3 style="margin-top:12px">Lợi ích chính của PremixTrack</h3>
-        <ul>
-          <li>Tập trung dữ liệu, truy xuất lịch sử và audit trail</li>
-          <li>Cập nhật thời gian thực, tránh xung đột phiên bản</li>
-          <li>Phân quyền theo vai trò, giảm sai sót vận hành</li>
-          <li>Báo cáo nhanh và xuất dữ liệu theo nhiều tiêu chí</li>
-          <li>Tự động cảnh báo khi thiếu nguyên liệu hoặc trùng lịch</li>
-        </ul>
+      <h3>Lợi ích chính của PremixTrack</h3>
+      <ul>
+        <li>Tập trung dữ liệu, truy xuất lịch sử &amp; audit trail</li>
+        <li>Cập nhật thời gian thực, tránh xung đột phiên bản</li>
+        <li>Phân quyền theo vai trò, giảm sai sót vận hành</li>
+        <li>Báo cáo nhanh và xuất dữ liệu theo nhiều tiêu chí</li>
+        <li>Tự động cảnh báo khi thiếu nguyên liệu hoặc trùng lịch</li>
+      </ul>
 
-        <p style="color:var(--muted);margin-top:12px">
-          Ứng dụng này nhằm thay thế việc quản lý qua Excel, mang lại tính nhất quán, minh bạch và hiệu quả trong vận hành premix.
-        </p>
-      </section>
+      <p>
+        Ứng dụng này nhằm thay thế quản lý qua Excel, giúp vận hành premix nhất quán, minh bạch và hiệu quả hơn.
+      </p>
+    </section>
 
-      <footer>© PremixTrack — Giới thiệu</footer>
-    </div>
-  </body>
+    <footer>© PremixTrack — Giới thiệu</footer>
+  </div>
+</body>
 </html>
